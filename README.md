@@ -1,2 +1,2 @@
-# react_dev
+# Introduction to JS and React
  

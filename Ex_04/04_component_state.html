@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04_component_state</title>
+</head>
+<body>
+<div id="example"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type ="text/babel">
+    /*
+    requirement: define component:
+    1. shown h2 title , initial text: You Like Me
+    2. Click on title, then change to: I Like You
+     */
+
+    class Like extends React.Component{
+
+        constructor(props) {
+            super(props)
+
+            this.state = {
+                isLikeMe: false
+            }
+
+
+            this.handleClick = this.handleClick.bind(this)
+        }
+        handleClick() {
+            console.log('handleClick()', this)
+
+            const isLikeMe = !this.state.isLikeMe
+
+            this.setState({isLikeMe})
+        }
+
+        render() {
+            const {isLikeMe} = this.state
+            return <h2 onClick={this.handleClick}>{isLikeMe?'You Like Me': 'I Like You'}</h2>
+        }
+    }
+
+    ReactDOM.render(<Like/>, document.getElementById('example'))
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05_component_props</title>
+</head>
+<body>
+<div id="example1"></div>
+<div id="example2"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+    <script type ="text/babel">
+    /*
+    function Person(props){
+        return(
+            <ul>
+                <li> Name: {props.name}</li>
+                <li> Age: {props.age}</li>
+                <li> Sex: {props.sex}</li>
+            </ul>
+        )
+    } */
+
+    class Person extends React.Component{
+
+        render() {
+            return (
+                <ul>
+                    <li>Name: {this.props.name}</li>
+                    <li>Age: {this.props.age}</li>
+                    <li>Sex: {this.props.sex}</li>
+                </ul>
+            )
+        }
+    }
+
+    const p1 = {
+        name: 'Tom',
+        age: 18,
+        sex: 'M'
+    }
+
+    Person.defaultProps={
+        sex: 'M',
+        age: 20
+    }
+
+    Person.propTypes ={
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number
+    }
+
+    //ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex} />, document.getElementById('example1'))
+    ReactDOM.render(<Person {...p1} />, document.getElementById('example1'))
+    const p2 = {
+        name: 'Jack',
+    }
+
+    ReactDOM.render(<Person name={p2.name} age={22} />, document.getElementById('example2'))
+
+    </script>
+</body>
+</html>

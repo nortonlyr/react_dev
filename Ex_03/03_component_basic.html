@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_component_basic</title>
+</head>
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type ="text/babel">
+        // 1.define component
+        /* function*/
+        function MyComponent(){
+            return <h2>Simple Component</h2>
+        }
+        /* Complex ES6 component*/
+        class MyComponent2 extends React.Component {
+
+            render(){
+                return <h2>ES6 component</h2>
+            }
+        }
+
+        // 2. render DOM label
+        ReactDOM.render(<MyComponent />, document.getElementById('example1'))
+         ReactDOM.render(<MyComponent2 />, document.getElementById('example2'))
+
+    </script>
+
+</body>
+</html>

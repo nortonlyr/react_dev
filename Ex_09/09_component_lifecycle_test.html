@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09_component_lifecycle_test</title>
+</head>
+<body>
+<div id="example"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+
+        class Life extends React.Component {
+
+            constructor(props) {
+                super(props)
+
+                //initial state
+                this.state = {
+                    opacity: 1
+                }
+                this.destroyCompoent = this.destroyCompoent.bind(this)
+            }
+
+            destroyCompoent () {
+                ReactDOM.unmountComponentAtNode(document.getElementById('example'))
+        }
+
+            componentDidMount() {
+                // trigger cycling timer
+                this.intervalID = setInterval(function () {
+                    console.log('Timer executes ...')
+                    let {opacity} = this.state
+                    opacity -= 0.1
+                    if(opacity <= 0) {
+                        opacity = 1
+                    }
+                    this.setState({opacity})
+                }.bind(this), 200)
+            }
+
+            componentWillUnmount() {
+
+                clearInterval(this.intervalID)
+            }
+
+            render () {
+
+                const {opacity} = this.state
+                return (
+                    <div>
+                        <h2 style={{opacity: opacity}}>{this.props.msg} </h2>
+                        <button onClick={this.destroyCompoent}>Go for it</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Life msg="React is Amazing!"/>, document.getElementById('example'))
+
+    </script>
+</body>
+</html>

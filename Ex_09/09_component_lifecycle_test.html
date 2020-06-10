@@ -28,7 +28,7 @@
                 ReactDOM.unmountComponentAtNode(document.getElementById('example'))
         }
 
-            componentDidMount() {
+            componentDidMount () {
                 // trigger cycling timer
                 this.intervalID = setInterval(function () {
                     console.log('Timer executes ...')
@@ -41,13 +41,21 @@
                 }.bind(this), 200)
             }
 
-            componentWillUnmount() {
+            componentWillUpdate () {
+                console.log('componentWillUpdate()')
+            }
 
+            componentDidUpdate () {
+                console.log('componentDidUpdate()')
+            }
+
+            componentWillUnmount() {
+                console.log('componentWillUnmount()')
                 clearInterval(this.intervalID)
             }
 
             render () {
-
+                console.log('render()')
                 const {opacity} = this.state
                 return (
                     <div>
